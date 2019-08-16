@@ -1,0 +1,2 @@
+The point cloud demo scene(s) were inspired by the Rsvfx project of Keijiro Takahashi (https://github.com/keijiro/Rsvfx), as well as by the Kinect-VFX-Graph project of Roel Kok (https://github.com/roelkok/Kinect-VFX-Graph). Kudos and big thanks to these guys!
+
