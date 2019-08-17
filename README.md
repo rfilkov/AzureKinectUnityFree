@@ -3,12 +3,12 @@ Azure Kinect Examples for Unity (free version)
 
 ## Introduction
 
-This is the free version of 'Azure Kinect Examples for Unity' package. It contains two demo scenes so far:
-* BasicColorDepthDemo - shows the basic sensor streams
-* VfxPointCloudDemo - shows the point cloud of the environment.
+This is the free version of 'Azure Kinect Examples for Unity' package. It works with Azure Kinect (aka Kinect4Azure, K4A) sensor only and requires at least Unity 2019.1f2. 
+So far it contains two demo scenes:
+* BasicColorDepthDemo - shows the basic sensor streams - color and depth
+* VfxPointCloudDemo - displays the point cloud of the environment.
 
-It's not much, but you can get the feeling what the full package looks like.
-Enjoy!
+I hope you can also get the feeling what the full package looks like. Enjoy!
 
 ## How to Run the Demo Scenes
 

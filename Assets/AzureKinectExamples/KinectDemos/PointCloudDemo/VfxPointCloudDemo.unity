@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 203902211}
   - component: {fileID: 203902210}
   - component: {fileID: 203902212}
+  - component: {fileID: 203902215}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -612,6 +613,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &203902215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203902209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a17e9eb7ba629243bfc955c820d04a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensorIndex: 0
+  smoothFactor: 0
 --- !u!1 &481465764
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,21 +978,7 @@ MonoBehaviour:
   getColorFrames: 2
   getInfraredFrames: 0
   getPoseFrames: 0
-  getBodyFrames: 0
   syncDepthAndColor: 1
-  syncBodyAndDepth: 0
-  minUserDistance: 0
-  maxUserDistance: 0
-  maxLeftRightDistance: 0
-  maxTrackedUsers: 0
-  showAllowedUsersOnly: 0
-  userDetectionOrder: 0
-  ignoreInferredJoints: 0
-  ignoreZCoordinates: 0
-  boneOrientationConstraints: 1
-  playerCalibrationPose: 0
-  userManager: {fileID: 0}
-  gestureManager: {fileID: 0}
   displayImages: 02000000
   displayImageWidthPercent: 0.2
   statusInfoText: {fileID: 1096888515}
