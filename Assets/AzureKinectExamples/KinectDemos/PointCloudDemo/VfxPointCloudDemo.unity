@@ -196,7 +196,10 @@ VisualEffect:
     m_Vector4f:
       m_Array: []
     m_Uint:
-      m_Array: []
+      m_Array:
+      - m_Value: 1280
+        m_Name: Resolution
+        m_Overridden: 0
     m_Int:
       m_Array: []
     m_Matrix4x4f:
@@ -212,6 +215,12 @@ VisualEffect:
         m_Overridden: 0
       - m_Value: {fileID: 8400000, guid: d8e773d5bbad0c05c965e6b888e86b55, type: 2}
         m_Name: PositionMap
+        m_Overridden: 0
+      - m_Value: {fileID: 8400000, guid: d8e773d5bbad0c05c965e6b888e86b55, type: 2}
+        m_Name: Position Map
+        m_Overridden: 0
+      - m_Value: {fileID: 8400000, guid: e96cdc3b37ad79be39d14ce547fe0da1, type: 2}
+        m_Name: Color Map
         m_Overridden: 0
     m_Bool:
       m_Array: []
