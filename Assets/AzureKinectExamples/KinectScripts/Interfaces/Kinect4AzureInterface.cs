@@ -165,6 +165,16 @@ namespace com.rfilkov.kinect
                     kinectConfig.DepthMode = DepthMode.Off;
                 }
 
+                // fps
+                if (colorCameraMode != ColorCameraMode._4096_x_3072_15Fps && depthCameraMode != DepthCameraMode._1024x1024_15Fps_2_21mWfov)
+                {
+                    kinectConfig.CameraFPS = FPS.FPS30;
+                }
+                else
+                {
+                    kinectConfig.CameraFPS = FPS.FPS15;
+                }
+
                 // infrared
                 if ((dwFlags & KinectInterop.FrameSource.TypeInfrared) != 0)
                 {
@@ -303,25 +313,38 @@ namespace com.rfilkov.kinect
 
                     long currentPlayTime = DateTime.Now.Ticks - playbackStartTime;
 
-                    Capture capture = kinectPlayback.GetNextCapture();
-                    if (capture != null)
+                    if ((frameSourceFlags & (KinectInterop.FrameSource)0x7F) != 0)
                     {
-                        ProcessCameraFrame(sensorData, capture);
-                        capture.Dispose();
+                        kinectPlayback.SeekTimestamp((ulong)(currentPlayTime / 10));
+                        Capture capture = kinectPlayback.GetNextCapture();
 
-                        currentFrameNumber++;
+                        if (capture != null)
+                        {
+                            ProcessCameraFrame(sensorData, capture);
+                            capture.Dispose();
+
+                            currentFrameNumber++;
+                        }
+                        else
+                        {
+                            Debug.Log("End of recording detected.");
+                        }
                     }
 
-                    ImuSample imuSample = kinectPlayback.GetNextImuSample();
-                    while (imuSample != null)
+                    if ((frameSourceFlags & KinectInterop.FrameSource.TypePose) != 0)
                     {
-                        ProcessImuFrame(imuSample);
+                        ImuSample imuSample = kinectPlayback.GetNextImuSample();
 
-                        ulong imuTimestamp = (ulong)(imuSample.GyroTimestamp.Ticks + imuSample.AccelerometerTimestamp.Ticks) >> 1;  // avg
-                        if (kinectPlayback.IsEndOfStream() || imuTimestamp >= rawDepthTimestamp)
-                            break;
+                        while (imuSample != null)
+                        {
+                            ProcessImuFrame(imuSample);
 
-                        imuSample = kinectPlayback.GetNextImuSample();
+                            ulong imuTimestamp = (ulong)imuSample.AccelerometerTimestamp.Ticks;
+                            if (kinectPlayback.IsEndOfStream() || imuTimestamp >= rawDepthTimestamp)
+                                break;
+
+                            imuSample = kinectPlayback.GetNextImuSample();
+                        }
                     }
                 }
                 else
