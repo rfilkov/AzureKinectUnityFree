@@ -331,21 +331,21 @@ namespace com.rfilkov.kinect
                         }
                     }
 
-                    if ((frameSourceFlags & KinectInterop.FrameSource.TypePose) != 0)
-                    {
-                        ImuSample imuSample = kinectPlayback.GetNextImuSample();
+                    //if ((frameSourceFlags & KinectInterop.FrameSource.TypePose) != 0)
+                    //{
+                    //    ImuSample imuSample = kinectPlayback.GetNextImuSample();
 
-                        while (imuSample != null)
-                        {
-                            ProcessImuFrame(imuSample);
+                    //    while (imuSample != null)
+                    //    {
+                    //        ProcessImuFrame(imuSample);
 
-                            ulong imuTimestamp = (ulong)imuSample.AccelerometerTimestamp.Ticks;
-                            if (kinectPlayback.IsEndOfStream() || imuTimestamp >= rawDepthTimestamp)
-                                break;
+                    //        ulong imuTimestamp = (ulong)imuSample.AccelerometerTimestamp.Ticks;
+                    //        if (kinectPlayback.IsEndOfStream() || imuTimestamp >= rawDepthTimestamp)
+                    //            break;
 
-                            imuSample = kinectPlayback.GetNextImuSample();
-                        }
-                    }
+                    //        imuSample = kinectPlayback.GetNextImuSample();
+                    //    }
+                    //}
                 }
                 else
                 {
@@ -393,8 +393,8 @@ namespace com.rfilkov.kinect
                 // color frame
                 if (capture.Color != null && rawColorImage != null)
                 {
-                    if (kinectPlayback != null)
-                        WaitForPlaybackTimestamp("color", capture.Color.DeviceTimestamp.Ticks);
+                    //if (kinectPlayback != null)
+                    //    WaitForPlaybackTimestamp("color", capture.Color.DeviceTimestamp.Ticks);
 
                     lock (colorFrameLock)
                     {
@@ -409,8 +409,8 @@ namespace com.rfilkov.kinect
                 // depth frame
                 if (capture.Depth != null && rawDepthImage != null)
                 {
-                    if (kinectPlayback != null)
-                        WaitForPlaybackTimestamp("depth", capture.Depth.DeviceTimestamp.Ticks);
+                    //if (kinectPlayback != null)
+                    //    WaitForPlaybackTimestamp("depth", capture.Depth.DeviceTimestamp.Ticks);
 
                     lock (depthFrameLock)
                     {
@@ -425,8 +425,8 @@ namespace com.rfilkov.kinect
                 // infrared frame
                 if (capture.IR != null && rawInfraredImage != null)
                 {
-                    if (kinectPlayback != null)
-                        WaitForPlaybackTimestamp("ir", capture.IR.DeviceTimestamp.Ticks);
+                    //if (kinectPlayback != null)
+                    //    WaitForPlaybackTimestamp("ir", capture.IR.DeviceTimestamp.Ticks);
 
                     lock (infraredFrameLock)
                     {
@@ -478,18 +478,18 @@ namespace com.rfilkov.kinect
         }
 
 
-        // in playback mode - waits until the given time stamp
-        private void WaitForPlaybackTimestamp(string frameSource, long frameTimestamp)
-        {
-            //Debug.Log(string.Format("{0} ts: {1}, sys: {2}", frameSource, frameTimestamp, (DateTime.Now.Ticks - playbackStartTime)));
+        //// in playback mode - waits until the given time stamp
+        //private void WaitForPlaybackTimestamp(string frameSource, long frameTimestamp)
+        //{
+        //    //Debug.Log(string.Format("{0} ts: {1}, sys: {2}", frameSource, frameTimestamp, (DateTime.Now.Ticks - playbackStartTime)));
 
-            long currentPlayTime = DateTime.Now.Ticks - playbackStartTime;
+        //    long currentPlayTime = DateTime.Now.Ticks - playbackStartTime;
 
-            while (currentPlayTime < frameTimestamp)
-            {
-                currentPlayTime = DateTime.Now.Ticks - playbackStartTime;
-            }
-        }
+        //    while (currentPlayTime < frameTimestamp)
+        //    {
+        //        currentPlayTime = DateTime.Now.Ticks - playbackStartTime;
+        //    }
+        //}
 
         // processes the IMU frame
         private void ProcessImuFrame(ImuSample imuSample)
